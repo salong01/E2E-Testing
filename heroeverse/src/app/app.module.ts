@@ -21,9 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'hero-details', component: HeroDetailComponent},
-      {path: 'login', component: LoginComponent}
-    ]),
+    { path: 'hero-details', component: HeroDetailComponent },
+    { path: 'login', component: LoginComponent }
+], { relativeLinkResolution: 'legacy' }),
     FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
