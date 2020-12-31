@@ -1,15 +1,18 @@
 <div *ngIf="hero">
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.id}}</div>
-    <div>
-        <label>name:
-            <input [(ngModel)]="hero.name" placeholder="name"/>
-        </label>
-    </div>
-    <div>
-        <span>{{hero.faction}}</span>
-    </div>
-    <div>
-        <span>{{hero.description}}</span>
-    </div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar></div>
+            <mat-card-title>{{hero.name}}</mat-card-title>
+            <mat-card-subtitle>{{hero.faction}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="'assets/img/' + hero.name + '.jpg'" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <span>{{hero.description}}</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

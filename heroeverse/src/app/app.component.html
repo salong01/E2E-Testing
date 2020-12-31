@@ -19,18 +19,26 @@
 </div-->
 
   <mat-toolbar color="primary">
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
     <span class="example-spacer"></span>
     <span background-color="light-red">{{title}}</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>share</mat-icon>
-    </button>
+    <div *ngIf="user; then thenBlock else elseBlock"></div>
+    <ng-template #elseBlock>
+        <button mat-raised-button class="login-button" routerLink="/login" routerLinkActive="active">Login</button>
+
+        <button mat-raised-button class="login-button" routerLink="/register" routerLinkActive="active">Register</button>
+    </ng-template>
+    <ng-template #thenBlock>
+        <!--button mat-icon-button>
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>share</mat-icon>
+        </button-->
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+    </ng-template>
   </mat-toolbar>
 <div class="content" role="main">
 <router-outlet></router-outlet>

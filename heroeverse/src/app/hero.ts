@@ -3,4 +3,5 @@ export interface Hero {
     name: string;
     description: string;
     faction: string;
+    image: string;
   }
