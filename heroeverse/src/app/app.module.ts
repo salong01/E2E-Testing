@@ -25,15 +25,14 @@ import { MatButtonModule } from '@angular/material/button';
     RegisterComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule.forRoot([
-      { path: 'heroes/:name', component: HeroDetailComponent },
-      { path: 'heroes', component: HeroesComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-    ],
-    { relativeLinkResolution: 'legacy' }),
+    { path: 'heroes/:name', component: HeroDetailComponent },
+    { path: 'heroes', component: HeroesComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+], { relativeLinkResolution: 'legacy', initialNavigation: 'enabled' }),
     FormsModule,
     //Validators,
     BrowserAnimationsModule,
