@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 //import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -27,20 +29,22 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule.forRoot([
-    { path: 'heroes/:name', component: HeroDetailComponent },
-    { path: 'heroes', component: HeroesComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-], { relativeLinkResolution: 'legacy', initialNavigation: 'enabled' }),
+      { path: 'heroes/:name', component: HeroDetailComponent },
+      { path: 'heroes', component: HeroesComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+    ], { relativeLinkResolution: 'legacy', initialNavigation: 'enabled' }),
     FormsModule,
+    ReactiveFormsModule,
     //Validators,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

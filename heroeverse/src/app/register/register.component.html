@@ -3,22 +3,33 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title text-align="center">Register Form</mat-card-title>
     </mat-card-header>
-    <form>
+    <form [formGroup]="registerForm">
         <mat-card-content>
             <mat-form-field>
-                <input matInput placeholder="Username">
+                <input matInput placeholder="Username" formControlName="username"required>
             </mat-form-field>
                     
             <br>
 
             <mat-form-field>
-                <input matInput placeholder="Email">
+                <input matInput placeholder="Email" formControlName="email"required>
             </mat-form-field>
             
             <br>
+
+            <label>Pick your gender</label>
+            <br><br>
+            <mat-radio-group aria-label="Gender" formControlName="gender" required>
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <br>
+              <mat-radio-button value="2">Female</mat-radio-button>
+            </mat-radio-group>
         
+            <br><br>
+
+
             <mat-form-field>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -27,7 +38,7 @@
             <br>
 
             <mat-form-field>
-              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password">
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password" formControlName="confirmPassword" required>
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
@@ -36,8 +47,12 @@
 
       <td>
 
+      <p>
+          Form Status: {{ registerForm.value }}
+      </p>
+
       <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/heroes" routerLinkActive="active">Register</button> 
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button> 
       </mat-card-actions>
     </form>
     </mat-card>
