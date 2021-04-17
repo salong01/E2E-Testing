@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
-import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
+import { Hero } from '../shared/heroes';
+import { HeroService } from '../shared/hero.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -17,9 +16,14 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+        .subscribe(response => this.heroes = response);
   }
 
+  // getHeroes(): void {
+  //   this.heroService.getHeroes()
+  //       .subscribe(heroes => this.heroes = heroes);
+  // }
+  
   ngOnInit(): void {
     this.getHeroes();
   }

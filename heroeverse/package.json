@@ -28,11 +28,18 @@
     "@angular/router": "~11.0.4",
     "@nguniversal/express-engine": "^11.0.1",
     "angular-in-memory-web-api": "^0.11.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.18",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
+    "npm": "^7.5.3",
+    "request": "^2.79.0",
     "rxjs": "~6.6.3",
+    "saslprep": "^1.0.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
@@ -57,5 +64,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.5"
-  }
+  },
+  "styles": [
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "src/styles.css"
+  ]
 }

@@ -10,6 +10,9 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
     <li *ngFor="let hero of heroes" routerLink="/heroes/{{hero.name}}">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <span class="badge">{{hero.name}}</span>
     </li>
+    <!-- <mat-list *ngFor="let hero of heroes" routerLink="/heroes/{{hero.name}}" dense>
+        <span class="badge">{{hero.name}}</span>
+    </mat-list> -->
 </ul>
