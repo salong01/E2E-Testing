@@ -14,7 +14,11 @@ let UserSchema = new Schema({
     password: {
         type: String
     }
-}, {
+},
+{
+    timestamp: true
+},
+{
     collection: 'Users'
 })
 
