@@ -17,17 +17,6 @@
             
             <br>
 
-            <label>Pick your gender</label>
-            <br><br>
-            <mat-radio-group aria-label="Gender" formControlName="gender" required>
-              <mat-radio-button value="1">Male</mat-radio-button>
-              <br>
-              <mat-radio-button value="2">Female</mat-radio-button>
-            </mat-radio-group>
-        
-            <br><br>
-
-
             <mat-form-field>
             <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -46,10 +35,6 @@
       </mat-card-content>
 
       <td>
-
-      <p>
-          Form Status: {{ registerForm.value }}
-      </p>
 
       <mat-card-actions>
         <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button> 

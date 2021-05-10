@@ -5,7 +5,6 @@ import * as express from 'express';
 import { join } from 'path';
 
 import * as mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import { UsersRoute } from './routes/users-route';
 import { HeroesRoute } from './routes/heroes-route';
 
@@ -18,6 +17,7 @@ const heroesRoute: HeroesRoute = new HeroesRoute();
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
+  var bodyParser = require('body-parser');
   const server = express();
   const distFolder = join(process.cwd(), 'dist/heroeverse/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';

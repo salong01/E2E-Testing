@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  registerForm = new FormGroup ({ username: new FormControl(), email: new FormControl(), gender: new FormControl(), password: new FormControl(), confirmPassword: new FormControl()});
+  registerForm = new FormGroup ({ username: new FormControl(), email: new FormControl(), password: new FormControl(), confirmPassword: new FormControl()});
 
   ngOnInit(): void {
   }
@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.registerFormBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
-      gender: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     })
