@@ -16,10 +16,17 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(user: User): Observable<any> {
-    return this.http.post<User>('/api/register', user, this.httpOptions)
+  register(user) {
+    return this.http.post<any>('/api/register', user, this.httpOptions)
       .pipe(
-        catchError(this.handleError<User>('Add User'))
+        catchError(this.handleError<any>('Add User'))
+      );
+  }
+
+  loggIn(user){
+    return this.http.post<any>('/api/login', user, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Loggin failed'))
       );
   }
 
@@ -30,22 +37,6 @@ export class UsersService {
           return console.log('User retrieved!');
         }),
         catchError(this.handleError<User[]>('Get Users', []))
-      );
-  }
-
-  getUser(id): Observable<User[]> {
-    return this.http.get<User[]>('/api/login/' + id)
-      .pipe(
-        tap(_ => console.log(`User retrieved: ${id}`)),
-        catchError(this.handleError<User[]>(`Get User id=${id}`))
-      );
-  }
-
-  deleteUser(id): Observable<User[]> {
-    return this.http.delete<User[]>('/api//' + id, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`User deleted: ${id}`)),
-        catchError(this.handleError<User[]>('Delete User'))
       );
   }
 
