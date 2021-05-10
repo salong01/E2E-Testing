@@ -10,7 +10,7 @@ export class TokenAuthService {
   
   constructor() { }
 
-  signOut(): void {
+  logOut(): void {
     window.sessionStorage.clear();
   }
 
@@ -23,7 +23,7 @@ export class TokenAuthService {
     return window.sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user: any): void {
+  public saveUser(user: string): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
