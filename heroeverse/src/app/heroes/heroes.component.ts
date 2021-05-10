@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../shared/heroes';
-import { HeroService } from '../shared/hero.service';
+import { Hero } from '../services/heroes';
+import { TokenAuthService } from '../services/token-auth.service';
+import { HeroService } from '../services/hero.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,20 +13,18 @@ export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, private tokenService: TokenAuthService) {}
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(response => this.heroes = response);
+        .subscribe(res => this.heroes = res);
   }
 
-  // getHeroes(): void {
-  //   this.heroService.getHeroes()
-  //       .subscribe(heroes => this.heroes = heroes);
-  // }
-  
   ngOnInit(): void {
     this.getHeroes();
+    if (this.tokenService.getToken()) {
+      console.log('token existe')
+    }
   }
 
 }
