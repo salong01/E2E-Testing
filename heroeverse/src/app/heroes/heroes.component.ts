@@ -12,19 +12,17 @@ import { Observable } from 'rxjs';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
-
+  user: string
   constructor(private heroService: HeroService, private tokenService: TokenAuthService) {}
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(res => this.heroes = res);
+      .subscribe(res => this.heroes = res);
   }
 
   ngOnInit(): void {
     this.getHeroes();
-    if (this.tokenService.getToken()) {
-      console.log('token existe')
-    }
+    this.user = this.tokenService.getUser();
   }
 
 }

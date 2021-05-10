@@ -19,7 +19,7 @@ export class UsersService {
   register(user) {
     return this.http.post<any>('/api/register', user, this.httpOptions)
       .pipe(
-        catchError(this.handleError<any>('Add User'))
+        catchError(this.handleError<any>('User registration failed'))
       );
   }
 

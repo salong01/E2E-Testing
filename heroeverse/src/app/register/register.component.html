@@ -3,7 +3,7 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title text-align="center">Register Form</mat-card-title>
     </mat-card-header>
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" (submit)='register()'>
         <mat-card-content>
             <mat-form-field>
                 <input matInput placeholder="Username" formControlName="username"required>
@@ -27,8 +27,8 @@
             <br>
 
             <mat-form-field>
-              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password" formControlName="confirmPassword" required>
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirm Password" formControlName="confirmPassword" required>
+              <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirm">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
             </mat-form-field>

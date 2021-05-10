@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TokenAuthService } from '../services/token-auth.service';
+import { UsersService } from '../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +12,9 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 
   hide = true;
-  constructor(private registerFormBuilder: FormBuilder) {
+  hideConfirm = true;
+
+  constructor(private registerFormBuilder: FormBuilder, private userService: UsersService, private tokenService: TokenAuthService, private router: Router) {
     this.createForm();
   }
 
@@ -26,5 +31,16 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     })
   }
-  
+
+  register(){
+    this.userService.register(this.registerForm.value)
+      .subscribe(
+        res => {
+        this.tokenService.saveToken(res.token)
+        this.tokenService.saveUser(this.registerForm.controls['username'].value)
+        this.router.navigate(['/heroes'])
+      },
+      err => console.log(err)
+    )
+  }  
 }
