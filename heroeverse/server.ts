@@ -7,6 +7,7 @@ import { join } from 'path';
 import * as mongoose from 'mongoose';
 import { UsersRoute } from './routes/users-route';
 import { HeroesRoute } from './routes/heroes-route';
+import { UserHeroesRoute } from './routes/user-heroes-route';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
@@ -14,6 +15,7 @@ import { existsSync } from 'fs';
 
 const usersRoute: UsersRoute = new UsersRoute();
 const heroesRoute: HeroesRoute = new HeroesRoute();
+const userHeroesRoute: UserHeroesRoute = new UserHeroesRoute();
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -40,6 +42,10 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+  
+  usersRoute.UsersRoute(server);
+  heroesRoute.HeroesRoute(server);
+  userHeroesRoute.UserHeroesRoute(server);
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
@@ -47,9 +53,6 @@ export function app(): express.Express {
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
-
-  usersRoute.UsersRoute(server);
-  heroesRoute.HeroesRoute(server);
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {

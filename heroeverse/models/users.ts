@@ -14,6 +14,7 @@ let UserSchema = new Schema({
     password: {
         type: String
     }
+},{ timestamps: true 
 }, {
     collection: 'Users'
 })
