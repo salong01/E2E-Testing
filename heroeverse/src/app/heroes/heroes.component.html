@@ -1,18 +1,6 @@
-<!-- < div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
-</div>
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div> -->
-
-<h2>My Heroes</h2>
+<h2>Heroes</h2>
 <ul class="heroes">
     <li *ngFor="let hero of heroes" routerLink="/heroes/{{hero.name}}">
         <span class="badge">{{hero.name}}</span>
     </li>
-    <!-- <mat-list *ngFor="let hero of heroes" routerLink="/heroes/{{hero.name}}" dense>
-        <span class="badge">{{hero.name}}</span>
-    </mat-list> -->
 </ul>

@@ -3,6 +3,7 @@ import { Hero } from '../services/heroes';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../services/hero.service';
+import { TokenAuthService } from '../services/token-auth.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -13,7 +14,7 @@ export class HeroDetailComponent implements OnInit {
 
   hero: Hero[];
 
-  constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private tokenService: TokenAuthService) { }
 
   ngOnInit(): void {
     this.getHero();

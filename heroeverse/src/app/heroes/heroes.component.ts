@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
-  user: string
+  user: string;
   constructor(private heroService: HeroService, private tokenService: TokenAuthService) {}
 
   getHeroes(): void {
@@ -22,7 +22,6 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHeroes();
-    this.user = this.tokenService.getUser();
   }
 
 }
