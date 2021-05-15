@@ -1,4 +1,4 @@
 export class UserHero {
     username: string;
-    name: string;
+    hero: string;
 }

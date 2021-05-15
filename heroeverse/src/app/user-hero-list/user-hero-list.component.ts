@@ -18,7 +18,6 @@ export class UserHeroListComponent implements OnInit {
   constructor(private userHeroesService: UserHeroesService, private tokenService: TokenAuthService) {}
 
   getUserHeroes(user): void {
-    console.log(user)
     this.userHeroesService.getUserHeroes(user)
       .subscribe(res => this.userHeroes = res);
   }
@@ -26,6 +25,5 @@ export class UserHeroListComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.tokenService.getUser();
     this.getUserHeroes(this.user);
-    console.log(this.userHeroes)
   }
 }

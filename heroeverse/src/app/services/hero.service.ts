@@ -16,38 +16,42 @@ export class HeroService {
   };
   constructor(private http: HttpClient) { }
 
-  // getHeroes(): Observable<Hero[]> {
-  //   return this.http.get<Hero[]>('/api/heroes')
-  //     .pipe(
-  //       tap(heroes => console.log('Heroes retrieved!')),
-  //       catchError(this.handleError<Hero[]>('Get Heroes', []))
-  //     );
-  // }
 
-  /** GET heroes from the server */
+  // GET heroes from the server
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(this.heroesUrl, this.httpOptions)
       .pipe(
         tap(_ => console.log('fetched heroes')),
-        catchError(this.handleError<Hero[]>('getHeroes', []))
+        catchError(this.handleError<Hero[]>('Get all heroes', []))
       );
   }
 
-  getHero(name): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl + "/" + name)
+  getHero(name): Observable<Hero> {
+    return this.http.get<Hero>(this.heroesUrl + '/' + name, this.httpOptions)
       .pipe(
-        tap(_ => console.log(`Hero retrieved: ${name}`)),
-        catchError(this.handleError<Hero[]>(`Get hero name=${name}`))
+        tap(_ => console.log(`Hero retrieved ${name}`)),
+        catchError(this.handleError<Hero>(`Get hero ${name}`))
+      );
+  }
+
+  addUserHero(userHero){
+    return this.http.post<any>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Adding hero to user list failed'))
+      );
+  }
+
+  removeUserHero(userHero){
+    return this.http.put<any>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('Adding hero to user list failed'))
       );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error);
-      // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
