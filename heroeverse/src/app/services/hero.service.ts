@@ -3,13 +3,14 @@ import { Hero } from './heroes';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserHero } from './user-hero';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = 'api/heroes';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -35,16 +36,16 @@ export class HeroService {
   }
 
   addUserHero(userHero){
-    return this.http.post<any>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
+    return this.http.post<UserHero>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
       .pipe(
-        catchError(this.handleError<any>('Adding hero to user list failed'))
+        catchError(this.handleError<UserHero>('Adding hero to user list failed'))
       );
   }
 
   removeUserHero(userHero){
-    return this.http.put<any>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
+    return this.http.put<UserHero>(this.heroesUrl + '/' + userHero.hero, userHero, this.httpOptions)
       .pipe(
-        catchError(this.handleError<any>('Adding hero to user list failed'))
+        catchError(this.handleError<UserHero>('Adding hero to user list failed'))
       );
   }
 

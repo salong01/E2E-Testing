@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 import { UserHeroListComponent } from './user-hero-list/user-hero-list.component';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UserHeroListComponent } from './user-hero-list/user-hero-list.component
     MatCardModule,
     MatButtonModule,
     MatRadioModule,
+    MatMenuModule,
     HttpClientModule
   ],
   providers: [],

@@ -18,12 +18,13 @@ export class HeroDetailComponent implements OnInit {
   userHeroes: UserHero[];
   isHeroSaved: boolean;
 
-  constructor(private route: ActivatedRoute, private heroService: HeroService, private tokenService: TokenAuthService, private userHeroService:UserHeroesService) { }
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private tokenAuthService: TokenAuthService, private userHeroService:UserHeroesService) { }
 
   ngOnInit(): void {
     this.heroName = this.route.snapshot.paramMap.get('name');
     this.getHero();
-    this.getUserHeroes();
+    if(!(this.tokenAuthService.getUser()==''))
+      this.getUserHeroes();
   }
 
   getHero(): void {
@@ -31,29 +32,29 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => this.hero = hero);
   }
 
-  isHeroInUserList(): void {
-    for(let hero of this.userHeroes){
-      if(hero.hero===this.heroName){
-        this.isHeroSaved = true;
-        return;
-      }else{
-        this.isHeroSaved = false;
-      }
-    }
-  }
-
   getUserHeroes(): void {
-    const user = this.tokenService.getUser();
+    const user = this.tokenAuthService.getUser();
     this.userHeroService.getUserHeroes(user)
     .subscribe(
-      heroes => this.userHeroes = heroes
+      heroes => {
+        if(heroes.length==0)
+          this.isHeroSaved=false;
+        else {
+          for(let hero of heroes){
+            if(hero.hero===this.heroName){
+              this.isHeroSaved = true;
+              return;
+            }else
+              this.isHeroSaved = false;
+          }
+        }
+      }
     )
   }
 
   addOrRemoveHeroUser(): void {
-    this.userHero.hero = this.hero.name
-    this.userHero.username = this.tokenService.getUser()
-    this.isHeroInUserList();
+    this.userHero.hero = this.hero.name;
+    this.userHero.username = this.tokenAuthService.getUser();
     if(this.isHeroSaved===false){
       this.heroService.addUserHero(this.userHero)
       .subscribe(
