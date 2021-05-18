@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from '../services/heroes';
+import { Hero } from '../services/hero';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../services/hero.service';
 import { TokenAuthService } from '../services/token-auth.service';
@@ -23,8 +23,6 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.heroName = this.route.snapshot.paramMap.get('name');
     this.getHero();
-    if(!(this.tokenAuthService.getUser()==''))
-      this.getUserHeroes();
   }
 
   getHero(): void {
@@ -53,6 +51,8 @@ export class HeroDetailComponent implements OnInit {
   }
 
   addOrRemoveHeroUser(): void {
+    this.getUserHeroes();
+    console.log(this.isHeroSaved)
     this.userHero.hero = this.hero.name;
     this.userHero.username = this.tokenAuthService.getUser();
     if(this.isHeroSaved===false){

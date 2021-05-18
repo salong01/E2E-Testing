@@ -39,16 +39,5 @@ export class UsersRoute {
                 res.status(200).json({token})
             }
         });
-
-        // Get All Users
-        app.route('/api/login').get((req: Request, res: Response, next: NextFunction) => {
-            User.find((error, data) => {
-                if (error) {
-                    return next(error)
-                } else {
-                    res.json(data)
-                }
-            })
-        })
     }
 }

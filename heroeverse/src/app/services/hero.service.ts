@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Hero } from './heroes';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Hero } from './hero';
 import { UserHero } from './user-hero';
 
 @Injectable({
@@ -17,8 +18,6 @@ export class HeroService {
   };
   constructor(private http: HttpClient) { }
 
-
-  // GET heroes from the server
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl, this.httpOptions)
       .pipe(

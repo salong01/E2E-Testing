@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../services/heroes';
-import { TokenAuthService } from '../services/token-auth.service';
+
+import { Hero } from '../services/hero';
 import { HeroService } from '../services/hero.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -12,8 +11,8 @@ import { Observable } from 'rxjs';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
-  user: string;
-  constructor(private heroService: HeroService, private tokenService: TokenAuthService) {}
+  
+  constructor(private heroService: HeroService) {}
 
   getHeroes(): void {
     this.heroService.getHeroes()
@@ -23,5 +22,4 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.getHeroes();
   }
-
 }
