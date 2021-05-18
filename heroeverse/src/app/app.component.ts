@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { Component } from '@angular/core';
+import { TokenAuthService } from './services/token-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,7 @@ import { RegisterComponent } from './register/register.component';
 })
 export class AppComponent {
   title = 'Heroe Verse';
-  user: String;
 
-  @ViewChild(LoginComponent) child;
+  constructor(public tokenAuthService: TokenAuthService) {}
 
-  // ngAfterViewInit() {
-  //   this.user = this.child.user
-  // }
 }
