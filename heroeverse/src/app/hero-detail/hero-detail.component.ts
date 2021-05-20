@@ -23,6 +23,8 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.heroName = this.route.snapshot.paramMap.get('name');
     this.getHero();
+    if(!(this.tokenAuthService.getUser()==''))
+      this.getUserHeroes();
   }
 
   getHero(): void {
