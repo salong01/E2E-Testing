@@ -24,7 +24,7 @@ export function app(): express.Express {
   const distFolder = join(process.cwd(), 'dist/heroeverse/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
-  mongoose.connect('mongodb://localhost:27017/heroverse', {
+  mongoose.connect('mongodb://mongodbDocker:27017/heroverse', {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
