@@ -1,12 +1,12 @@
-version: "3.1"
+version: "3.9"
 services:
-  mongodbDocker:
-    image: mongo:3.2
+  mongodbHeroeverse:
+    image: mongo:4.0.4
     volumes:
       - ./heroeverse/database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
     ports:
       - "27017:27017"
   heroverse:
-    image: heroverse:develop
+    image: saulalonso2/heroeverse:1.0
     ports:
       - "4000:4000"

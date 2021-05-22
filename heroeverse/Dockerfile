@@ -1,16 +1,14 @@
 #Indicate the source of the app
 FROM node:12.13.1-alpine
 
-#install http server for our static content
-#RUN npm install -g http-server
 #create directory in which we will copy all files
-RUN mkdir heroverse
+RUN mkdir heroeverse
 
 # copy 'package.json' and 'package-lock.json' files in current directory
-COPY package.json package-lock.json /heroverse/
+COPY package.json package-lock.json /heroeverse/
 
-# go to workspace 'docker-testing' to make the current working directory 
-WORKDIR /heroverse
+# go to workspace 'heroeverse' to make the current working directory 
+WORKDIR /heroeverse
 
 # install project dependencies
 RUN npm install
@@ -18,9 +16,6 @@ RUN npm install -g @angular/cli
 
 # copy all project files and directories into current directory
 COPY . .
-
-# build application
-#RUN 
 
 #run application
 CMD npm run build:ssr && npm run serve:ssr
