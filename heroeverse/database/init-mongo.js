@@ -1,4 +1,4 @@
-db = new Mongo().getDB("heroverse");
+db = new Mongo().getDB("heroeverse");
 
 db.Heroes.insert([
   { "_id" : ObjectId("603f9648c2e238a2b5cfbb19"), "name" : "Namor", "faction" : "Atlante", "description" : "Hijo de un mutante y una reina atlante, actual rey de Atlantis", "__v" : 0 },
