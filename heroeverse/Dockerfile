@@ -1,5 +1,5 @@
 #Indicate the source of the app
-FROM node:12.13.1-alpine
+FROM node:14.15-alpine
 
 #create directory in which we will copy all files
 RUN mkdir heroeverse

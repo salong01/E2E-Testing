@@ -7,6 +7,6 @@ services:
     ports:
       - "27017:27017"
   heroeverse:
-    image: saulalonso2/heroeverse:1.0
+    image: saulalonso2/heroeverse:develop
     ports:
       - "4000:4000"
