@@ -1,18 +1,31 @@
 <div *ngIf="hero">
-    <mat-card class="example-card">
+    <mat-card class="mat-card">
         <mat-card-header>
-            <div mat-card-avatar></div>
             <mat-card-title>{{hero.name}}</mat-card-title>
             <mat-card-subtitle>{{hero.faction}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="'assets/img/' + hero.name + '.jpg'" alt="Photo of a Shiba Inu">
+        <img mat-card-image [src]="'assets/img/' + hero.name + '.jpg'">
         <mat-card-content>
             <span>{{hero.description}}</span>
         </mat-card-content>
-        <mat-card-actions>
-            <button (click)="addOrRemoveHeroUser()" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-            <mat-icon>favorite</mat-icon>
-        </button>
+        <mat-card-actions class="actions">
+            <div *ngIf="isHeroSaved; then removeHeroUser else addHeroUser"></div>
+            <ng-template #addHeroUser>
+                <button (click)="addHero()">
+                    <mat-icon>add</mat-icon>
+                    Add
+                </button>
+            </ng-template>
+            <ng-template #removeHeroUser>
+                <button (click)="removeHero()">
+                    <mat-icon>clear</mat-icon>
+                    Remove
+                </button>
+            </ng-template>
+            <button mat-icon-button (click)="goBack()">
+                Back
+                <mat-icon>reply</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>

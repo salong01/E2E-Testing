@@ -1,32 +1,32 @@
-  <mat-toolbar color="primary">
-    <span class="example-spacer"></span>
-    <span background-color="light-red">{{title}}</span>
-    <span class="example-spacer"></span>
-    <div *ngIf="tokenAuthService.getUser()==''; then notLoggedIn else loggedIn"></div>
-    <ng-template #notLoggedIn>
-        <button mat-raised-button class="login-button" routerLink="/login" routerLinkActive="active">Login</button>
+<mat-toolbar color="primary">
+  <span class="example-spacer"></span>
+  <span background-color="light-red">{{title}}</span>
+  <span class="example-spacer"></span>
+  <div *ngIf="tokenAuthService.getUser()==''; then notLoggedIn else loggedIn"></div>
+  <ng-template #notLoggedIn>
+      <button id="loginPage" mat-raised-button class="login-button" routerLink="/login" routerLinkActive="active">Login</button>
 
-        <button mat-raised-button class="login-button" routerLink="/register" routerLinkActive="active">Register</button>
-    </ng-template>
-    <ng-template #loggedIn>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/heroes" routerLinkActive="active">
-            <mat-icon>list</mat-icon>
-            <span>Héroes</span>
-          </button>
-        <button mat-menu-item routerLink="/userList/{{tokenAuthService.getUser()}}" routerLinkActive="active">
+      <button id="registerPage" mat-raised-button class="login-button" routerLink="/register" routerLinkActive="active">Register</button>
+  </ng-template>
+  <ng-template #loggedIn>
+    <button id="menu" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button id="heroesPage" mat-menu-item routerLink="/heroes" routerLinkActive="active">
           <mat-icon>list</mat-icon>
-          <span>Mi lista</span>
+          <span>Héroes</span>
         </button>
-        <button mat-menu-item (click)="tokenAuthService.logOut()" routerLink="/login" routerLinkActive="active">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Cerrar sesión</span>
-        </button>
-      </mat-menu>
-    </ng-template>
-  </mat-toolbar>
+      <button id="userListPage" mat-menu-item routerLink="/userList/{{tokenAuthService.getUser()}}" routerLinkActive="active">
+        <mat-icon>list</mat-icon>
+        <span>Mi lista</span>
+      </button>
+      <button id="logout" mat-menu-item (click)="tokenAuthService.logOut()" routerLink="/login" routerLinkActive="active">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </ng-template>
+</mat-toolbar>
 <div class="content" role="main">
 <router-outlet></router-outlet>

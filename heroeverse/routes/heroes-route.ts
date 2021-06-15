@@ -15,7 +15,6 @@ export class HeroesRoute {
                     return next(error)
                 } else {
                     res.json(data)
-                    console.log('Hero created successfully')
                 }
             })
         });
@@ -44,28 +43,30 @@ export class HeroesRoute {
 
          //Save User Hero
         app.route('/api/heroes/:name').post(async (req: Request, res: Response, next: NextFunction) => {
-            console.log(req.body)
-            await UserHero.create(req.body, (error, data) => {
-                if (error) {
-                    return next(error)
-                } else {
-                    res.json(data)
-                    console.log('Hero saved successfully')
-                }
-            })
+            const username = req.body.username;
+            const hero = req.body.hero;
+            const userHero = await UserHero.findOne({username, hero})
+            if(userHero){
+                return res.status(400).send('User alredy has this hero in list.')
+            }
+            else{
+                await UserHero.create(req.body, (error, data) => {
+                    if (error) {
+                        return next(error)
+                    } else {
+                        res.json(data)
+                    }
+                })
+            }
         });
         
         // Delete user hero from list
         app.route('/api/heroes/:name').put(async (req: Request, res: Response, next: NextFunction) => {
-            console.log("Peticion put")
-            console.log(req.body)
-            console.log(req.body.username)
-            console.log(req.body.hero)
             const username = req.body.username;
             const hero = req.body.hero;
             const userHero = await UserHero.findOne({username, hero})
             if(!userHero){
-                return res.status(404).send('User has not the hero with that name.')
+                return res.status(400).send('User has not this hero in list')
             }
             else{
                 await UserHero.deleteOne({username, hero}, (error, data) => {

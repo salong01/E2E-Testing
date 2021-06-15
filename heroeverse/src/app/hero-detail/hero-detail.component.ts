@@ -5,6 +5,7 @@ import { HeroService } from '../services/hero.service';
 import { TokenAuthService } from '../services/token-auth.service';
 import { UserHero } from '../services/user-hero';
 import { UserHeroesService } from '../services/user-heroes.service';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
@@ -18,7 +19,7 @@ export class HeroDetailComponent implements OnInit {
   userHeroes: UserHero[];
   isHeroSaved: boolean;
 
-  constructor(private route: ActivatedRoute, private heroService: HeroService, private tokenAuthService: TokenAuthService, private userHeroService:UserHeroesService) { }
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private tokenAuthService: TokenAuthService, private userHeroService:UserHeroesService, private location: Location) { }
 
   ngOnInit(): void {
     this.heroName = this.route.snapshot.paramMap.get('name');
@@ -39,7 +40,7 @@ export class HeroDetailComponent implements OnInit {
       heroes => {
         if(heroes.length==0)
           this.isHeroSaved=false;
-        else {
+        else 
           for(let hero of heroes){
             if(hero.hero===this.heroName){
               this.isHeroSaved = true;
@@ -47,32 +48,38 @@ export class HeroDetailComponent implements OnInit {
             }else
               this.isHeroSaved = false;
           }
-        }
+        
       }
     )
   }
 
-  addOrRemoveHeroUser(): void {
-    this.getUserHeroes();
-    console.log(this.isHeroSaved)
+  addHero(): void {
     this.userHero.hero = this.hero.name;
     this.userHero.username = this.tokenAuthService.getUser();
-    if(this.isHeroSaved===false){
-      this.heroService.addUserHero(this.userHero)
+    this.heroService.addUserHero(this.userHero)
       .subscribe(
         res => {
-          console.log("Hero saved")
+          console.log("Hero saved to " + this.userHero.username + "list") 
+          this.isHeroSaved = true
         },
         err => console.log(err)
       )
-    }else {
-      console.log(this.userHero);
-      this.heroService.removeUserHero(this.userHero)
+  }
+
+  removeHero(): void{
+    this.userHero.hero = this.hero.name;
+    this.userHero.username = this.tokenAuthService.getUser();
+    this.heroService.removeUserHero(this.userHero)
       .subscribe(
         res => {
-          console.log("Hero deleted")
-        },err => console.log(err)
+          console.log("Hero deleted from " + this.userHero.username + "list")
+          this.isHeroSaved = false
+        },
+        err => console.log(err)
       )
-    }
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 }

@@ -4,19 +4,20 @@ import User from '../models/users';
 export class UsersRoute {
     UsersRoute(app): void {
         const jwt = require('jsonwebtoken')
+        const secretkey = 'secretKey'
 
         // Register User
         app.route('/api/register').post(async (req: Request, res: Response, next: NextFunction) => {
             const username = req.body.username;
             const user = await User.findOne({username})
             if(user){
-                return res.status(404).send('User already exists with that username. Try with another username')
+                return res.status(400).send('User already exists with that username. Try with another username')
             }else {
                 await User.create(req.body, (error, data) => {
                     if (error) {
                         return next(error)
                     } else {
-                        const token = jwt.sign({ _id : req.body._id}, 'secretkey')
+                        const token = jwt.sign({ _id : req.body._id}, secretkey)
                         res.status(200).json({token})
                     }
                 })
@@ -35,7 +36,7 @@ export class UsersRoute {
                 alert('Wrong password')
                 return res.status(404).send('Wrong password')
             }else {
-                const token = jwt.sign({ _id : req.body._id}, 'secretkey')
+                const token = jwt.sign({ _id : req.body._id}, secretkey)
                 res.status(200).json({token})
             }
         });
