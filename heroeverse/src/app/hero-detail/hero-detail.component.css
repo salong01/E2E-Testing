@@ -1,3 +1,14 @@
 .mat-card {
     max-width: 400px;
 }
+.mat-card-header{
+    justify-content: center;
+}
+.actions button {
+    color: white;
+    background-color:rgba(7, 119, 248, 0.863);
+}
+.back{
+    position: absolute;
+    right: 0;
+}

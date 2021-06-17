@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <span class="example-spacer"></span>
-  <span background-color="light-red">{{title}}</span>
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
+  <span>{{title}}</span>
+  <span class="spacer"></span>
   <div *ngIf="tokenAuthService.getUser()==''; then notLoggedIn else loggedIn"></div>
   <ng-template #notLoggedIn>
       <button id="loginPage" mat-raised-button class="login-button" routerLink="/login" routerLinkActive="active">Login</button>

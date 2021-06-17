@@ -1,6 +1,8 @@
-<h2>Heroes</h2>
-<ul class="heroes">
-    <li *ngFor="let hero of heroes" routerLink="/heroes/{{hero.name}}">
-        <span class="badge">{{hero.name}}</span>
-    </li>
-</ul>
+<div class="list">
+    <h2>Héroes</h2>
+    <ul class="heroes">
+        <li *ngFor="let hero of heroes">
+            <button mat-raised-button class="hero" routerLink="/heroes/{{hero.name}}">{{hero.name}}</button>
+        </li>
+    </ul>
+</div>

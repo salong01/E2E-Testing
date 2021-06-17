@@ -11,18 +11,18 @@
         <mat-card-actions class="actions">
             <div *ngIf="isHeroSaved; then removeHeroUser else addHeroUser"></div>
             <ng-template #addHeroUser>
-                <button (click)="addHero()">
+                <button id="addHero" mat-raised-button (click)="addHero()">
                     <mat-icon>add</mat-icon>
                     Add
                 </button>
             </ng-template>
             <ng-template #removeHeroUser>
-                <button (click)="removeHero()">
+                <button id="removeHero" mat-raised-button (click)="removeHero()">
                     <mat-icon>clear</mat-icon>
                     Remove
                 </button>
             </ng-template>
-            <button mat-icon-button (click)="goBack()">
+            <button class="back" id="backButton" mat-raised-button (click)="goBack()" style="position: absolute; right: 0;">
                 Back
                 <mat-icon>reply</mat-icon>
             </button>
