@@ -17,15 +17,6 @@ export class UserHeroesService {
   };
   constructor(private http: HttpClient) { }
 
-  // getUserHeroes(user): Observable<any[]> {
-  //   console.log('método get en service' + user)
-  //   return this.http.get<any[]>(this.userHeroesUrl)
-  //     .pipe(
-  //       tap(_ => console.log(`Heroes users retrieved: ${user}`)),
-  //       catchError(this.handleError<any[]>(`Get heroes from user ${user}`))
-  //     );
-  // }
-
   getUserHeroes(userHero): Observable<any[]>{
     return this.http.get<any>(this.userHeroesUrl + "/" + userHero, this.httpOptions)
       .pipe(
@@ -33,14 +24,6 @@ export class UserHeroesService {
         catchError(this.handleError<any[]>(`Get all user heroes from user ${userHero}`))
       );
   }
-
-  // deleteUserHero(hero){
-  //   return this.http.delete<any>(this.userHeroesUrl, this.httpOptions)
-  //   .pipe(
-  //     tap(_ => console.log(`Hero ${hero}  deleted from user list ${hero}`)),
-  //       catchError(this.handleError<any[]>(`Get heroes from user ${hero}`))
-  //   );
-  // }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

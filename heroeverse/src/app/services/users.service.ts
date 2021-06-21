@@ -30,16 +30,6 @@ export class UsersService {
       );
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('/api/login')
-      .pipe(
-        tap(users => {
-          return console.log('User retrieved!');
-        }),
-        catchError(this.handleError<User[]>('Get Users', []))
-      );
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

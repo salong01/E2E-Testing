@@ -3,6 +3,7 @@
 }
 .mat-card-header{
     justify-content: center;
+    text-align: center;
 }
 .actions button {
     color: white;
